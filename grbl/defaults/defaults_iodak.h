@@ -63,4 +63,3 @@
   #define DEFAULT_LASER 1 // false
 
 #endif
-
