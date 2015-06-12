@@ -68,6 +68,7 @@
 #define MESSAGE_ENABLED 4
 #define MESSAGE_DISABLED 5
 #define MESSAGE_SAFETY_DOOR_AJAR 6
+#define MESSAGE_PROGRAM_END 7
 
 // Prints system status messages.
 void report_status_message(uint8_t status_code);
@@ -86,6 +87,9 @@ void report_grbl_help();
 
 // Prints Grbl global settings
 void report_grbl_settings();
+
+// Prints an echo of the pre-parsed line received right before execution.
+void report_echo_line_received(char *line);
 
 // Prints realtime status report
 void report_realtime_status();

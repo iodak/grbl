@@ -102,9 +102,9 @@
   // CCW angle between position and target from circle center. Only one atan2() trig computation required.
   float angular_travel = atan2(r_axis0*rt_axis1-r_axis1*rt_axis0, r_axis0*rt_axis0+r_axis1*rt_axis1);
   if (is_clockwise_arc) { // Correct atan2 output per direction
-    if (angular_travel >= 0) { angular_travel -= 2*M_PI; }
+    if (angular_travel >= -ARC_ANGULAR_TRAVEL_EPSILON) { angular_travel -= 2*M_PI; }
   } else {
-    if (angular_travel <= 0) { angular_travel += 2*M_PI; }
+    if (angular_travel <= ARC_ANGULAR_TRAVEL_EPSILON) { angular_travel += 2*M_PI; }
   }
 
   // NOTE: Segment end points are on the arc, which can lead to the arc diameter being smaller by up to
@@ -227,9 +227,7 @@ void mc_homing_cycle()
   // with machines with limits wired on both ends of travel to one limit pin.
   // TODO: Move the pin-specific LIMIT_PIN call to limits.c as a function.
   #ifdef LIMITS_TWO_SWITCHES_ON_AXES  
-    uint8_t limit_state = (LIMIT_PIN & LIMIT_MASK);
-    if (bit_isfalse(settings.flags,BITFLAG_INVERT_LIMIT_PINS)) { limit_state ^= LIMIT_MASK; }
-    if (limit_state) { 
+    if (limits_get_state()) { 
       mc_reset(); // Issue system reset and ensure spindle and coolant are shutdown.
       bit_true_atomic(sys.rt_exec_alarm, (EXEC_ALARM_HARD_LIMIT|EXEC_CRITICAL_EVENT));
       return;
@@ -258,7 +256,7 @@ void mc_homing_cycle()
 
   // Gcode parser position was circumvented by the limits_go_home() routine, so sync position now.
   gc_sync_position();
-  
+
   // If hard limits feature enabled, re-enable hard limits pin change register after homing cycle.
   limits_init();
 }
