@@ -88,4 +88,9 @@
   #include "defaults/defaults_simulator.h"
 #endif
 
+#ifdef DEFAULTS_IODAK
+  // Settings only for Grbl Simulator (www.github.com/grbl/grbl-sim)
+  #include "defaults/defaults_iodak.h"
+#endif
+
 #endif
