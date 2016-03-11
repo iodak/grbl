@@ -61,5 +61,4 @@
   #define DEFAULT_HOMING_DEBOUNCE_DELAY 0 // msec (0-65k)
   #define DEFAULT_HOMING_PULLOFF 0 // mm
   #define DEFAULT_LASER 1 // false
-
 #endif

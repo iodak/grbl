@@ -73,8 +73,8 @@
 // on separate pin, but homed in one cycle. Also, it should be noted that the function of hard limits 
 // will not be affected by pin sharing.
 // NOTE: Defaults are set for a traditional 3-axis CNC machine. Z-axis first to clear, followed by X & Y.
-#define HOMING_CYCLE_0 (1<<Z_AXIS)                // REQUIRED: First move Z to clear workspace.
-#define HOMING_CYCLE_1 ((1<<X_AXIS)|(1<<Y_AXIS))  // OPTIONAL: Then move X,Y at the same time.
+//#define HOMING_CYCLE_0 (1<<Z_AXIS)                // REQUIRED: First move Z to clear workspace.
+#define HOMING_CYCLE_0 ((1<<X_AXIS)|(1<<Y_AXIS))  // OPTIONAL: Then move X,Y at the same time.
 // #define HOMING_CYCLE_2                         // OPTIONAL: Uncomment and add axes mask to enable
 
 // Number of homing cycles performed after when the machine initially jogs to limit switches.
@@ -249,7 +249,7 @@
 
 // This need variable spinle enabaled. Lasers don't need time to speed up or slow down and the build 
 // in dwelling for spindels will be disabled. 
-//#define LASER_SPINDLE // Default disabled. Uncomment to enable.
+#define LASER_SPINDLE // Default disabled. Uncomment to enable.
 
 // Used by the variable spindle output only. These parameters set the maximum and minimum spindle speed
 // "S" g-code values to correspond to the maximum and minimum pin voltages. There are 256 discrete and 
