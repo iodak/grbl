@@ -156,7 +156,7 @@
 // you can use normally-closed switches, rather than the default normally-open switches.
 // NOTE: If you require individual control pins inverted, keep this macro disabled and simply alter
 //   the CONTROL_INVERT_MASK definition in cpu_map.h files.
-// #define INVERT_ALL_CONTROL_PINS // Default disabled. Uncomment to enable.
+#define INVERT_ALL_CONTROL_PINS // Default disabled. Uncomment to enable.
 
 // Inverts select limit pin states based on the following mask. This effects all limit pin functions, 
 // such as hard limits and homing. However, this is different from overall invert limits setting. 
